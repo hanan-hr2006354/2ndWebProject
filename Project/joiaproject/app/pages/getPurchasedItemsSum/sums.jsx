@@ -1,7 +1,7 @@
 
 'use client'
 import React from 'react';
-import Purchase from './sum';
+import Sum from './sum';
 import { useState } from 'react';
 
 import styles from "@/app/page.module.css"
@@ -22,8 +22,8 @@ export default function Purchases({ initialSums }) {
         </tr>
       </thead>
       <tbody>
-        {purchases.map((p) => (
-          <Purchase purchase={p} />
+        {sums.map((p) => (
+          <Sum sum={sums} />
         ))}
       </tbody>
     </table>

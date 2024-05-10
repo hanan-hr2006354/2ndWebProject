@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import Link from 'next/link';
 
 
-export default function Purchase({ purchase }) {
+export default function Purchase({ sum }) {
   return (
-    < tr key={purchase.id}>
+    < tr key={sum.id}>
 
     <td>{purchase.id}</td>
     <td>{purchase.name}</td>
