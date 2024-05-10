@@ -1,34 +1,43 @@
 //API 
 // login.js
 
+// Frontend code
+// Frontend code
+
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
-  
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-  
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-  
-      const result = await response.json();
-      localStorage.setItem('loggedInUser', JSON.stringify(result.user));
-      window.location.href = '/joia.html'; // Redirect based on user role or preferences
-    } catch (error) {
-      console.error('Error logging in:', error);
-      alert('Invalid username or password. Please try again.');
+  event.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    // Fetch users from API
+    const response = await fetch('/api/users');
+    if (!response.ok) {
+      throw new Error('Failed to fetch users');
     }
-  });
-  
+    const users = await response.json();
+
+    // Find user with matching username
+    const user = users.find(user => user.username === username);
+    if (!user) {
+      throw new Error('Invalid username');
+    }
+
+    // Validate password
+    if (user.password !== password) {
+      throw new Error('Invalid password');
+    }
+
+    // Successful login
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    window.location.href = '/joia.html'; // Redirect based on user role or preferences
+  } catch (error) {
+    console.error('Error logging in:', error);
+    alert('Invalid username or password. Please try again.');
+  }
+});
+
 
 // document.getElementById('loginForm').addEventListener('submit', function(event) {
 //     event.preventDefault();
