@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 class Static {
-//Done
+//Done/UI Done/
 async getCustomersPerLocation() {
     try {
         return await prisma.customer.groupBy({
@@ -79,7 +79,7 @@ async getPurchasedItemsSum(itemId) {
         return { error: error.message };
     }
 }
-//Done
+//Done/UI Done/ make sure adding a purchase
 async getUnpurchasedItems() {
     try {
         return await prisma.item.findMany({
@@ -110,23 +110,23 @@ async getUnpurchasedItems() {
         return { error: error.message };
     }
 }
-
-async getTotalPurchasesPerProductYear() {
+async getTotalPurchasesPerProductYear(fromDate, toDate) {  
     try {
-        return await prisma.purchase.groupBy({
-            by: [{ key: 'itemId', alias: 'itemId' }, { key: 'date', alias: 'year', _type: 'date' }],
-            _sum: {
-                amount: true
-            },
-            orderBy: {
-                date: 'asc'
+        return await prisma.purchase.aggregate({
+        by: ['itemId'], 
+        _sum: { quantity: true },
+        where: {
+            itemId: itemId,
+            date: {
+                gte: new Date(fromDate).toISOString(),
+                lte: new Date (toDate).toISOString()
             }
-        });
+        }    
+        })  
     } catch (error) {
         return { error: error.message };
     }
 }
-
 
 
 }
