@@ -15,7 +15,7 @@ async getCustomersPerLocation() {
         return { error: error.message };
     }
 }
-//Done
+//Done/UI Done/
 async  get3MostPurchasedItems() {
     try {
         return await prisma.item.findMany({
@@ -35,7 +35,7 @@ async  get3MostPurchasedItems() {
         return { error: error.message };
     }
 }
-//Done
+//Done/UI Done/
 async get3MostPurchasedItemsForSixMonths() {
     try {
         const sixMonthsAgo = new Date();
@@ -67,14 +67,14 @@ async get3MostPurchasedItemsForSixMonths() {
         return { error: error.message };
     }
 }
-// Done
+//Done/UI Done/
 async getPurchasedItemsSum(itemId) {
     try {
         const aggregatedData = await prisma.purchase.aggregate({
             where: { itemId: itemId },
-            _sum: { quantity: true } // Aggregate the sum of quantity instead of price
+            _sum: { quantity: true } 
         });
-        return aggregatedData._sum.quantity; // Return the sum of quantity
+        return aggregatedData._sum.quantity; 
     } catch (error) {
         return { error: error.message };
     }

@@ -1,15 +1,15 @@
 
 'use client'
 import React from 'react';
-import Purchase from './purchase';
+import Purchase from './sum';
 import { useState } from 'react';
 
 import styles from "@/app/page.module.css"
-export default function Purchases({ initialPurchase }) {
-  const [purchases, setpurchases] = useState(initialPurchase);
+export default function Purchases({ initialSums }) {
+  const [sums, setSums] = useState(initialSums);
   return (
     <div>
-    <h1 className={styles.title}>Most 3 Purchases Past 6 Months</h1>
+    <h1 className={styles.title}>Total Purchases per Item</h1>
 
     <table className={styles.table}>
       <thead>
@@ -18,7 +18,6 @@ export default function Purchases({ initialPurchase }) {
           <th>Name</th>
           <th>Price</th>
           <th>Image</th>
-          <th>Quantity</th>
           <th>Total Purchases</th>
         </tr>
       </thead>

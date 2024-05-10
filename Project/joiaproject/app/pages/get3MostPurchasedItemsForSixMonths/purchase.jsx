@@ -11,7 +11,7 @@ export default function Purchase({ purchase }) {
     <td>{purchase.name}</td>
     <td>{purchase.price}</td>
     <td><img src={`/images/${purchase.image}`} alt={purchase.name} style={{ width: '100px' }} /></td>
-    <td>{purchase.quantity}</td>
+    <td>{purchase.quantity*purchase.purchases.length}</td>
     <td>{purchase.purchases.length}</td>
 
 </tr>
