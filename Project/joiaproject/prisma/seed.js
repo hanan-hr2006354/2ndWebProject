@@ -48,6 +48,7 @@ async function seed() {
                     shippingAddress: customer.shipping_address,
                     password: customer.password,
                     balance: customer.balance,
+                    location:customer.location
                 },
             });
 

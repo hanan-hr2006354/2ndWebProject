@@ -2,11 +2,11 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 class Static {
-//?? no location is prisma
-async  getCustomersPerLocation() {
+//Done
+async getCustomersPerLocation() {
     try {
         return await prisma.customer.groupBy({
-            by: ['shippingAddress'],
+            by: ['location'], // Change to 'location' to group by location
             _count: {
                 id: true
             }
@@ -15,7 +15,6 @@ async  getCustomersPerLocation() {
         return { error: error.message };
     }
 }
-
 //Done
 async  get3MostPurchasedItems() {
     try {
@@ -36,8 +35,38 @@ async  get3MostPurchasedItems() {
         return { error: error.message };
     }
 }
+//Done
+async get3MostPurchasedItemsForSixMonths() {
+    try {
+        const sixMonthsAgo = new Date();
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-
+        return await prisma.item.findMany({
+            where: {
+                purchases: {
+                    some: {
+                        date: {
+                            gte: sixMonthsAgo // Filter purchases from the last six months
+                        }
+                    }
+                }
+            },
+            include: {
+                purchases: {
+                    select: { id: true } // Just to count them
+                }
+            },
+            orderBy: {
+                purchases: {
+                    _count: 'desc'
+                }
+            },
+            take: 3
+        });
+    } catch (error) {
+        return { error: error.message };
+    }
+}
 // Done
 async getPurchasedItemsSum(itemId) {
     try {
@@ -50,7 +79,6 @@ async getPurchasedItemsSum(itemId) {
         return { error: error.message };
     }
 }
-
 //Done
 async getUnpurchasedItems() {
     try {
@@ -66,13 +94,12 @@ async getUnpurchasedItems() {
     }
 }
 
-
-//not okring
+//not wokring
   async  getTotalUniqueProductsPurchased(itemId) {
     try {
         return await prisma.purchase.groupBy({
             where: {
-                itemId: itemId  // Filter purchases by itemId
+                itemId: itemId 
             },
             by: ['itemId'],
             _count: {
@@ -84,11 +111,10 @@ async getUnpurchasedItems() {
     }
 }
 
-//Not working: no date identified
 async getTotalPurchasesPerProductYear() {
     try {
         return await prisma.purchase.groupBy({
-            by: { itemId: true, date: { year: true } },
+            by: [{ key: 'itemId', alias: 'itemId' }, { key: 'date', alias: 'year', _type: 'date' }],
             _sum: {
                 amount: true
             },
@@ -100,6 +126,8 @@ async getTotalPurchasesPerProductYear() {
         return { error: error.message };
     }
 }
+
+
 
 }
 export default new Static();

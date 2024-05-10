@@ -6,7 +6,8 @@ CREATE TABLE "Customer" (
     "username" TEXT NOT NULL,
     "shippingAddress" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "balance" INTEGER NOT NULL
+    "balance" INTEGER NOT NULL,
+    "location" TEXT NOT NULL
 );
 
 -- CreateTable

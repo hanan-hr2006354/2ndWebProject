@@ -10,6 +10,7 @@ Table Customer {
   shippingAddress String [not null]
   password String [not null]
   balance Int [not null]
+  location String [not null]
   purchases Purchase [not null]
 }
 

@@ -14,14 +14,18 @@
         "name": "GOLD CIRCLE NECKLACE",
         "price": 20,
         "image": "necklaces/gold_circle.png.png",
-        "quantity":10
-      },
+        "quantity":10,
+        "date": "2023-01-10T12:00:00Z",
+        "location":"qatar"      },
+      
       {
         "id": 12,
         "name": "GOLD PAPER CLIP BRACELET",
         "price": 200,
         "image": "bracelets/gold_paper_clip.jpg",
-        "quantity": 3
+        "quantity": 3 ,
+        "date": "2024-01-10T12:00:00Z",
+        "location":"qatar" 
       }]
 
     },
@@ -40,7 +44,9 @@
       "name": "GOLD LAYERED NECKLACE",
       "price": 10,
       "image": "necklaces/gold_layered.png.png",
-      "quantity":2}]
+      "quantity":2,
+      "date": "2024-03-10T12:00:00Z",
+      "location":"qatar" }]
 
     },
     {
@@ -58,7 +64,7 @@
         "price": 20,
         "image": "necklaces/gold_circle.png.png",
         "quantity":10,
-        "date":"2024-05-10T12:00:00Z",
+        "date":"2024-04-10T12:00:00Z",
         "location":"qatar"
       }]
     }
