@@ -31,11 +31,21 @@ export async function PUT(request,{params}) {
     }
 }
 
+// export async function POST(request,{params}) {
+//     try {
+//         const id=parseInt(params.id); 
+//         const cus=await request.json();
+//         const updateCustomer=await repo.addCustomer(id,cus);
+//         return Response.json(updateCustomer,{ status: 200});
+//     } catch (error) {
+//         console.error("Error:", error);
+//     }
+// }
 export async function POST(request,{params}) {
     try {
         const id=parseInt(params.id); 
         const cus=await request.json();
-        const updateCustomer=await repo.addCustomer(id,cus);
+        const updateCustomer=await repo.addPurchase(id,cus);
         return Response.json(updateCustomer,{ status: 200});
     } catch (error) {
         console.error("Error:", error);

@@ -139,5 +139,40 @@ async getCustomerDetails() {
     }
   }
 
+  async getItemPriceRangeWithDetails() {
+    try {
+      const minPriceItem = await prisma.item.findFirst({
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          image: true
+        },
+        orderBy: {
+          price: 'asc'
+        }
+      });
+
+      const maxPriceItem = await prisma.item.findFirst({
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          image: true
+        },
+        orderBy: {
+          price: 'desc'
+        }
+      });
+
+      return { 
+        minPriceItem: minPriceItem || { id: null, name: null, price: 0, image: null },
+        maxPriceItem: maxPriceItem || { id: null, name: null, price: 0, image: null }
+      };
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+
 }
 export default new Static();

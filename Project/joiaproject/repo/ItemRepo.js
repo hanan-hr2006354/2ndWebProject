@@ -31,13 +31,13 @@ class ItemRepo {
     }
 
 //DOne
-    async deleteItem(id) {
-        try {
-            return await prisma.item.delete({ where: { id } });
-        } catch (error) {
-            return { error: error.message };
-        }
-    }
+    // async deleteItem(id) {
+    //     try {
+    //         return await prisma.item.delete({ where: { id } });
+    //     } catch (error) {
+    //         return { error: error.message };
+    //     }
+    // }
 
 //DOne
     async getItemByName(name) {
@@ -52,26 +52,26 @@ class ItemRepo {
         }
     }
     
-//DONE
-    async getItemsByCategory(enteredCategory) {
-        try {
-            const categories = await prisma.category.findMany();
-                const matchedCategory = categories.find(category => category.name===enteredCategory);
+//Repeated
+    // async getItemsByCategory(enteredCategory) {
+    //     try {
+    //         const categories = await prisma.category.findMany();
+    //             const matchedCategory = categories.find(category => category.name===enteredCategory);
     
-            if (!matchedCategory) {
-                return { error: `Category '${enteredCategory}' not found` };
-            }
+    //         if (!matchedCategory) {
+    //             return { error: `Category '${enteredCategory}' not found` };
+    //         }
     
-            const items = await prisma.item.findMany({
-                where: {
-                    categoryId: matchedCategory.id
-                }
-            });
-            return items;
-        } catch (error) {
-            return { error: error.message };
-        }
-    }
+    //         const items = await prisma.item.findMany({
+    //             where: {
+    //                 categoryId: matchedCategory.id
+    //             }
+    //         });
+    //         return items;
+    //     } catch (error) {
+    //         return { error: error.message };
+    //     }
+    // }
     
 
     //NOT WORKING

@@ -30,17 +30,6 @@ class PurchaseRepo {
         }
     }
 
-
-    // async getAllPurchasesByCustomer(customerId) {
-    //     try {
-    //         return await prisma.purchase.findMany({ where: { customerId } });
-    //     } catch (error) {
-    //         return { error: error.message };
-    //     }
-    // }
-
-        //Done
-
     //Done
     async deletePurchase(id) {
         try {

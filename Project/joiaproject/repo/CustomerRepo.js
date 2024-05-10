@@ -3,6 +3,7 @@ const prisma = new PrismaClient();
 
 class CustomerRepo {
 
+    
     async getCustomerbyId(id) {
         try {
             return await prisma.customer.findUnique({
@@ -13,6 +14,7 @@ class CustomerRepo {
         }
     }
 
+    //needed
     async getCustomer() {
         try {
             return await prisma.customer.findMany();
@@ -20,6 +22,7 @@ class CustomerRepo {
             return { error: error.message };
         }
     }
+
     async addCustomer(customer) {
         try {
             return await prisma.customer.create({ data: customer });
@@ -27,7 +30,7 @@ class CustomerRepo {
             return { error: error.message };
         }
     }
-
+    //needed
     async updateCustomer(id, customer) {
         try {
             return await prisma.customer.update({
@@ -47,6 +50,7 @@ class CustomerRepo {
         }
     }
 
+        //needed
     async getCustomerPurchases(customerId) {
         try {
             return await prisma.purchase.findMany({
@@ -60,22 +64,7 @@ class CustomerRepo {
 
     //Not Working
     async addPurchase(customerId, purchase) {
-        try {
-            const customer = await prisma.customer.findUnique({
-                where: { id: customerId }
-            });
-    
-            if (!customer) {
-                throw new Error(`Customer with ID ${customerId} not found.`);
-            }
-                const createdPurchase = await prisma.purchase.create({
-                data: {
-                    ...purchase,
-                    customerId: customerId
-                }
-            });
-    
-            return createdPurchase;
+        
         } catch (error) {
             console.error("Error adding purchase:", error);
             return { error: error.message };
@@ -84,7 +73,8 @@ class CustomerRepo {
     
     
     
+    
 
-}
+
 
 export default new CustomerRepo();

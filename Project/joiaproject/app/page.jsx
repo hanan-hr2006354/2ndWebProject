@@ -25,9 +25,9 @@ export default function Page() {
         <button className={styles.button}>3 Most Purchased Items For Last Six Months</button></Link>
 
         <Link href={
-          {  pathname: '/pages/getItemsPerCategory'}
+          {  pathname: '/pages/getItemPriceRangeWithDetails'}
               }>   
-        <button className={styles.button}>Number Of Items Per Category</button></Link>
+        <button className={styles.button}>Min and Max Price of an Item</button></Link>
 
         <Link href={
           {  pathname: '/pages/getUnpurchasedItems'}

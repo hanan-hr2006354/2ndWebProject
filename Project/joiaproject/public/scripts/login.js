@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
   try {
     // Fetch users from API
-    const response = await fetch('/api/users');
+    const response = await fetch('http://localhost:3000/api/users');
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }

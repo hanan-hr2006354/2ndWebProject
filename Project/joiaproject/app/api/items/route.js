@@ -15,11 +15,11 @@ export async function GET(request){
             case 'name':
                 response = await repo.getItemByName(value.toLowerCase())
                 break;
-                case 'minPrice':
+            case 'minPrice':
                     const minPrice = parseFloat(value);
                     response = await repo.getItemsByPriceRange(minPrice, Infinity);
                     break;
-                case 'maxPrice':
+            case 'maxPrice':
                     const maxPrice = parseFloat(value);
                     response = await repo.getItemsByPriceRange(0, maxPrice);
                     break;
