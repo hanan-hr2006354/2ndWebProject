@@ -5,7 +5,7 @@ import Sum from './sum';
 import { useState } from 'react';
 
 import styles from "@/app/page.module.css"
-export default function Purchases({ initialSums }) {
+export default function Sums({ initialSums }) {
   const [sums, setSums] = useState(initialSums);
   return (
     <div>
@@ -18,14 +18,14 @@ export default function Purchases({ initialSums }) {
           <th>Name</th>
           <th>Price</th>
           <th>Image</th>
-          <th>Total Purchases</th>
+          <th>Total Quantity</th>
         </tr>
       </thead>
       <tbody>
-        {sums.map((p) => (
-          <Sum sum={sums} />
-        ))}
-      </tbody>
+  {Array.isArray(sums) && sums.map((sum) => (
+    <Sum key={sum.item.id} sum={sum} />
+  ))}
+</tbody>
     </table>
   </div>
   );

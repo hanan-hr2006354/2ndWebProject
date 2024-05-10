@@ -5,15 +5,15 @@ import Link from 'next/link';
 
 export default function Purchase({ sum }) {
   return (
-    < tr key={sum.id}>
+    < tr key={sum.item.id}>
+        <td>{sum.item.id}</td>
+        <td>{sum.item.name}</td>
+        <td>{sum.item.price}</td>
+        <td><img src={`/images/${sum.item.image}`} alt={sum.item.image} style={{ width: '100px' }} /></td>
 
-    <td>{purchase.id}</td>
-    <td>{purchase.name}</td>
-    <td>{purchase.price}</td>
-    <td><img src={`/images/${purchase.image}`} alt={purchase.name} style={{ width: '100px' }} /></td>
-    <td>{purchase.quantity*purchase.purchases.length}</td>
-    <td>{purchase.purchases.length}</td>
+        <td>{sum.quantity}</td>
 
-</tr>
+    </tr>
   );
 }
+

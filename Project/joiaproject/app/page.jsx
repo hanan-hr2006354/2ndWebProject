@@ -23,7 +23,11 @@ export default function Page() {
           {  pathname: '/pages/get3MostPurchasedItemsForSixMonths'}
               }>           
         <button className={styles.button}>3 Most Purchased Items For Last Six Months</button></Link>
-        <button className={styles.button}>Purchased Items Sum</button>
+
+        <Link href={
+          {  pathname: '/pages/getPurchasedItemsSum'}
+              }>   
+        <button className={styles.button}>Purchased Items Sum</button></Link>
 
         <Link href={
           {  pathname: '/pages/getUnpurchasedItems'}
