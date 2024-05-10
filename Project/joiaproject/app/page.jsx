@@ -25,14 +25,19 @@ export default function Page() {
         <button className={styles.button}>3 Most Purchased Items For Last Six Months</button></Link>
 
         <Link href={
-          {  pathname: '/pages/getPurchasedItemsSum'}
+          {  pathname: '/pages/getItemsPerCategory'}
               }>   
-        <button className={styles.button}>Purchased Items Sum</button></Link>
+        <button className={styles.button}>Number Of Items Per Category</button></Link>
 
         <Link href={
           {  pathname: '/pages/getUnpurchasedItems'}
               }>
         <button className={styles.button}>Unpurchased Items</button></Link>
+
+        <Link href={
+          {  pathname: '/pages/getCustomerDetails'}
+              }>
+        <button className={styles.button}>Customers Details</button></Link>
       </div>
     </div>
   );

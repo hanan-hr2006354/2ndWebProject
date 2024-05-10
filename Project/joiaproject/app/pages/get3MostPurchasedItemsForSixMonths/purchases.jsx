@@ -4,7 +4,7 @@ import React from 'react';
 import Purchase from './purchase';
 import { useState } from 'react';
 
-import styles from "@/app/page.module.css"
+import styles from "@/app/location.module.css"
 export default function Purchases({ initialPurchase }) {
   const [purchases, setpurchases] = useState(initialPurchase);
   return (

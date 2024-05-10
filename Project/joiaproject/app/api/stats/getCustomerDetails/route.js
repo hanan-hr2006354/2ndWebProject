@@ -1,6 +1,6 @@
 import repo from "@/repo/statistics"
 
 export async function GET(request, {params}){
-    const response = await repo.getTotalPurchasesPerProductYear();
+    const response = await repo.getCustomerDetails();
     return Response.json(response, {status:200})
 }

@@ -67,18 +67,8 @@ async get3MostPurchasedItemsForSixMonths() {
         return { error: error.message };
     }
 }
-//Done/UI Done/
-async getPurchasedItemsSum(itemId) {
-    try {
-        const aggregatedData = await prisma.purchase.aggregate({
-            where: { itemId: itemId },
-            _sum: { quantity: true } 
-        });
-        return aggregatedData._sum.quantity; 
-    } catch (error) {
-        return { error: error.message };
-    }
-}
+
+
 //Done/UI Done/ make sure adding a purchase
 async getUnpurchasedItems() {
     try {
@@ -93,41 +83,61 @@ async getUnpurchasedItems() {
         return { error: error.message };
     }
 }
-
-//not wokring
-  async  getTotalUniqueProductsPurchased(itemId) {
+//Done/UI Done/
+async getItemsPerCategory() {
     try {
-        return await prisma.purchase.groupBy({
-            where: {
-                itemId: itemId 
-            },
-            by: ['itemId'],
-            _count: {
-                itemId: true
-            }
+        return await prisma.item.groupBy({
+            by: ['categoryId'],
+            _count: true 
         });
     } catch (error) {
         return { error: error.message };
     }
 }
-async getTotalPurchasesPerProductYear(fromDate, toDate) {  
-    try {
-        return await prisma.purchase.aggregate({
-        by: ['itemId'], 
-        _sum: { quantity: true },
-        where: {
-            itemId: itemId,
-            date: {
-                gte: new Date(fromDate).toISOString(),
-                lte: new Date (toDate).toISOString()
-            }
-        }    
-        })  
-    } catch (error) {
-        return { error: error.message };
-    }
-}
 
+async getCustomerDetails() {
+    try {
+      const customers = await prisma.customer.findMany({
+        select: {
+          id: true,
+          username: true,
+          purchases: {
+            select: {
+              quantity: true,
+              item: {
+                select: {
+                  price: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const customerDetails = customers.map((customer) => {
+        const totalPurchaseQuantity = customer.purchases.reduce(
+          (total, purchase) => total + purchase.quantity,
+          0
+        );
+
+        const totalPrice = customer.purchases.reduce(
+          (total, purchase) => total + purchase.quantity * purchase.item.price,
+          0
+        );
+
+        return {
+          id: customer.id,
+          username: customer.username,
+          totalPurchaseQuantity,
+          totalPrice,
+        };
+      });
+
+      return customerDetails;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
 
 }
 export default new Static();
