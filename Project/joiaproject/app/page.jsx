@@ -6,7 +6,14 @@ import Link from 'next/link';
 import styles from "@/app/page.module.css"
 export default function Page() {
   return (
+    <>
     <div className={styles.container}>
+        {/* Add buttons with corresponding class name */}
+        <Link href={
+          {  pathname: '/pages/joia'}
+              }>
+        <button className={styles.button}>Go To Joia Page</button></Link>
+
       <h1 className={styles.text}>Joia Company's Statics & Data Analysis</h1>
       <div>
         {/* Add buttons with corresponding class name */}
@@ -40,5 +47,7 @@ export default function Page() {
         <button className={styles.button}>Customers Details</button></Link>
       </div>
     </div>
+    </>
+  
   );
 }
